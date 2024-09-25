@@ -1,0 +1,70 @@
+{
+    "allOrNone" : true,
+    "collateSubrequests": true,
+    "compositeRequest": [
+        {
+            "method": "POST",
+            "url": "/services/data/v{{version}}/sobjects/Account",
+            "referenceId": "newAccount1",
+            "body": {
+                "Name": "Maverick"
+            }
+        },
+        {
+            "method": "POST",
+            "url": "/services/data/v{{version}}/sobjects/Contact",
+            "referenceId": "newContact1",
+            "body": {
+                "FirstName": "Olivia",
+                "LastName": "Cloudwalker",
+                "AccountId": "@{newAccount1.id}"
+            }
+        },
+        {
+            "method": "POST",
+            "url": "/services/data/v52.0/sobjects/Case",
+            "referenceId": "newCase1",
+            "body": {
+                "Subject": "Lightning Registration",
+                "Origin": "Web",
+                "Reason": "Installation",
+                "Priority": "High",
+                "Status": "New",
+                "AccountId": "@{newAccount1.id}",
+                "ContactId": "@{newContact1.id}"
+            }
+        },
+        {
+            "method": "POST",
+            "url": "/services/data/v52.0/sobjects/Opportunity",
+            "referenceId": "newOpp1",
+            "body": {
+                "Name": "Range Extenders",
+                "StageName": "Prospecting",
+                "CloseDate": "2024-10-24",
+                "AccountId": "@{newAccount1.id}",
+                "ContactId": "@{newContact1.id}"
+            }
+        },
+        {
+            "method": "POST",
+            "url": "/services/data/v52.0/sobjects/Contract",
+            "referenceId": "newContract1",
+            "body": {
+                "Name": "SkyCheck",
+                "StartDate": "2024-10-24",
+                "ContractTerm": "12",
+                "AccountId": "@{newAccount1.id}",
+                "CustomerSignedId": "@{newContact1.id}"
+            }
+        },
+        {
+            "method": "PATCH",
+            "url": "/services/data/v52.0/sobjects/Contract/Id/@{newContract1.id}",
+            "referenceId": "updateContract1",
+            "body": {
+                "Status": "Activated"
+            }
+        }
+    ]
+}
