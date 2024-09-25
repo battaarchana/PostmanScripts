@@ -1,0 +1,38 @@
+{
+    "records": [{
+        "attributes" : {"type": "Contact", "referenceId" : "con1"},
+        "LastName" : "Cloudshine",
+        "FirstName" : "Emily",
+        "Opportunities" : {
+            "records" : [{
+                "attributes" : {"type" : "Opportunity", "referenceId" : "opp1"},
+                "Name" : "Advanced Training",
+                "StageName" : "Prospecting",
+                "CloseDate" : "2024-10-24",
+                "tasks" : {
+                    "records" : [{
+                        "attributes" : {"type" : "Task", "referenceId" : "task1"},
+                        "Priority" : "Normal",
+                        "Subject"   : "Emily Cloudshine - Advanced Training",
+                        "WhoId" : "@{con1.id}"
+                    }]
+                }
+            }]
+        },
+        "tasks" : {
+            "records" : [{
+                "attributes" : {"type" : "Task", "referenceId" : "task2"},
+                "Subject" : "Learning Resources",
+                "Priority" : "Normal"
+            }]
+        },
+        "cases" : {
+            "records" : [{
+                "attributes" : {"type" : "Case", "referenceId" : "case1"},
+                "Subject" : "Class Survey",
+                "Priority" : "Low",
+                "Status" : "New"
+            }]
+        }
+    }]
+}
